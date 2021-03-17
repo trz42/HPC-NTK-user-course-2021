@@ -1,0 +1,39 @@
+EESSI pilot scenario
+====================
+
+(based on what Radovan presented: start small, experiment, scale up)
+
+Assume you are already using Saga for some calculations, but you need
+to start using Fram. Specifically, you want to run GROMACS.
+
+Goal: Your goal is to run GROMACS with a target payload (number of
+      steps: 20000) as fast as you can/should/need on Fram. You may
+      also think about costs (billing units) and efficiency (Amdahl's
+      law).
+
+- Begin small (single core, few steps) on Saga.
+- Experiment with job settings (ntasks,mem,time).
+  Change them in the example script saga_GROMACS.sh
+  Submit the script (sbatch saga_GROMACS.sh) and
+  verify the result in the slurm-*.out file.
+- When you reached 4-8 ntasks on Saga, move over to Fram.
+ 
+- Scripts available on GitHub
+
+Example workflow
+cd $USERWORK
+git clone https://github.com/trz42/HPC-NTK-user-course-2021.git
+cd HPC-NTK-user-course-2021
+
+#submit saga_GROMACS.sh as is
+sbatch saga_GROMACS.sh
+
+# Iterate until you use about 4-8 tasks/cores (ntasks)
+#
+#   1 - Edit scripts (adjust memory (+/-), adjust time (+/-),
+        adjust ntasks (+/-), adjust NSTEPS (target 20000))
+#   2 - Submit (sbatch saga_GROMACS.sh or sbatch fram_GROMACS.sh)
+#   3 - Monitor (squeue) and check results (less or cat slurm out
+#       file, cat slurm-23458183.out)
+#
+
