@@ -28,12 +28,28 @@ cd HPC-NTK-user-course-2021
 #submit saga_GROMACS.sh as is
 sbatch saga_GROMACS.sh
 
-# Iterate until you use about 4-8 tasks/cores (ntasks)
-#
-#   1 - Edit scripts (adjust memory (+/-), adjust time (+/-),
-        adjust ntasks (+/-), adjust NSTEPS (target 20000))
-#   2 - Submit (sbatch saga_GROMACS.sh or sbatch fram_GROMACS.sh)
-#   3 - Monitor (squeue) and check results (less or cat slurm out
-#       file, cat slurm-23458183.out)
-#
+Iterate until you use about 4-8 tasks/cores (ntasks)
+
+  1 - Edit scripts (adjust memory (+/-), adjust time (+/-),
+      adjust ntasks (+/-), adjust NSTEPS (target 20000))
+  2 - Submit (sbatch saga_GROMACS.sh or sbatch fram_GROMACS.sh)
+  3 - Monitor (squeue) and check results (less or cat slurm out
+      file, cat slurm-23458183.out)
+
+You may encounter problems such as
+- Job was cancelled because it ran out of time.
+- Job was cancelled because it tried to use to much memory.
+- Look for error messages in slurm-*.out files.
+- Fix them by adjusting parameters (time, mem, ntasks, NSTEPS).
+
+Move over to Fram
+
+Get the scripts from GitHub (see above).
+Use the example script fram_GROMACS.sh
+Begin with the last set of parameters you used on Saga (except
+memory is not necessary to specify on Fram).
+
+Repeat the iteration until you reach the target number of
+steps (20000).
+
 
