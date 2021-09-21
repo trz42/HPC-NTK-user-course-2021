@@ -20,7 +20,8 @@ jobs:
         with:
           fetch-depth: 2
           path: 'previous'
-          ref: 'HEAD^'
+          ref: '~1'
+# didn't work          ref: 'HEAD^1'
 #      - run: git checkout HEAD^
           
       - name: checkout specific commit to $GITHUB_WORKSPACE/specific
