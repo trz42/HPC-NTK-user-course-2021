@@ -15,9 +15,19 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: checkout
+      - name: checkout previous to $GITHUB_WORKSPACE/previous
         uses: actions/checkout@v2
+        with:
+          path: 'previous'
+          
+      - name: checkout specific commit to $GITHUB_WORKSPACE/specific
+        uses: actions/checkout@v2
+        with:
+          path: 'specific'
 
+      - name: run normal diff for previous and specific
+        run: diff $GITHUB_WORKSPACE/previous $GITHUB_WORKSPACE/specific
+        
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world - $PWD - !
@@ -26,4 +36,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo $PWD
-          ls -lisa
+          ls -lisaR
