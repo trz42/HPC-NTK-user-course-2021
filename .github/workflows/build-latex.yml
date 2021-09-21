@@ -19,6 +19,9 @@ jobs:
         run: |
           echo "head_ref = ${{ github.head_ref }}"
           echo "sha = ${{ github.sha }}"
+          echo "event = ${{ github.event }}"
+          echo "event_path = ${{ github.event_path }}"
+          echo "event_name = ${{ github.event_name }}"
         
       # show GITHUB env
       - name: display GITHUB env
