@@ -35,9 +35,7 @@ jobs:
       - name: print parent commit
         run: |
           cd current
-          ls -l
-          echo $GITHUB_SHA
-          git log
+          git log --pretty=%P -n 1 $GITHUB_SHA
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout previous to $GITHUB_WORKSPACE/previous
