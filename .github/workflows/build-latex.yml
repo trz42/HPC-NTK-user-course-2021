@@ -18,6 +18,10 @@ jobs:
       - name: display GITHUB env
         run: env | grep GITHUB_
         
+      # print parent commit
+      - name: print parent commit
+        run: git log --pretty=%P -n 1 $GITHUB_SHA
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout previous to $GITHUB_WORKSPACE/previous
         uses: actions/checkout@v2
