@@ -18,9 +18,17 @@ jobs:
       - name: display GITHUB env
         run: env | grep GITHUB_
         
+      # checkout commit which triggered workflow
+      - name: checkout commit to $GITHUB_WORKSPACE/current
+        uses: actions/checkout@v2
+        with:
+          path: 'current'
+          
       # print parent commit
       - name: print parent commit
-        run: git log --pretty=%P -n 1 $GITHUB_SHA
+        run: |
+          cd current
+          git log --pretty=%P -n 1 $GITHUB_SHA
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout previous to $GITHUB_WORKSPACE/previous
