@@ -51,6 +51,7 @@ jobs:
       - name: checkout previous commit to $GITHUB_WORKSPACE/previous
         run: |
           git init $GITHUB_WORKSPACE/previous
+          cd $GITHUB_WORKSPACE/previous
           git remote add origin https://github.com/$GITHUB_REPOSITORY
           git config --local gc.auto 0
           git -c protocol.version=2 fetch --no-tags --prune --progress --no-recurse-submodules --depth=2
