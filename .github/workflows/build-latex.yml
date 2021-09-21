@@ -30,7 +30,7 @@ jobs:
           cd current
           ls -l
           echo $GITHUB_SHA
-          git log --pretty='%P' -n 2
+          git log -n 2
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout previous to $GITHUB_WORKSPACE/previous
