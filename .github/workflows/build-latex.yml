@@ -14,6 +14,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # dive into action context
+      - name: dive into action context
+        run: echo "head_ref = ${{ github.head_ref }}"
+        
       # show GITHUB env
       - name: display GITHUB env
         run: env | grep GITHUB_
