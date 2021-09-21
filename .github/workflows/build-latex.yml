@@ -14,6 +14,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # show GITHUB env
+      - name: display GITHUB env
+        run: env | grep GITHUB_
+        
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: checkout previous to $GITHUB_WORKSPACE/previous
         uses: actions/checkout@v2
