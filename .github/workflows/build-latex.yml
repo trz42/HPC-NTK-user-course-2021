@@ -16,7 +16,9 @@ jobs:
     steps:
       # dive into action context
       - name: dive into action context
-        run: echo "head_ref = ${{ github.head_ref }}"
+        run: |
+          echo "head_ref = ${{ github.head_ref }}"
+          echo "sha = ${{ github.sha }}"
         
       # show GITHUB env
       - name: display GITHUB env
