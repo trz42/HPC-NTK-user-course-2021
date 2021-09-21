@@ -18,7 +18,9 @@ jobs:
       - name: checkout previous to $GITHUB_WORKSPACE/previous
         uses: actions/checkout@v2
         with:
+          fetch-depth: 2
           path: 'previous'
+        run: git checkout HEAD^
           
       - name: checkout specific commit to $GITHUB_WORKSPACE/specific
         uses: actions/checkout@v2
