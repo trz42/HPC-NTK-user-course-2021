@@ -27,16 +27,18 @@ jobs:
           path: trigger
           fetch-depth: 0
           
-      - name: Checkout submitted version
-        uses: actions/checkout@v2
-        with:
-          path: submitted
-          fetch-depth: 0
-          ref: 87f1ef8bad11cb9b8fbecc71095ca1914b0a0435
+      - name: "Checkout" submitted version
+        run: |
+          ls
+          mkdir submitted
+          cd trigger
+          git checkout 1e8150e4cfabe8049423b469704e56310e6fd2f7
+          cp -r doc ../submitted
+          git switch -
           
       # run latexdiff
       - name: Check latexdiff version
-        run: latexdiff --flatten submitted/article.tex trigger/article.tex > diff2submitted.tex
+        run: latexdiff --flatten submitted/doc/main.tex trigger/doc/main.tex > diff2submitted.tex
         
       # build PDF with differences
       - name: Build PDF with differences
