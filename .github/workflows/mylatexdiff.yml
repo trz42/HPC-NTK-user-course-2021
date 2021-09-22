@@ -21,11 +21,27 @@ jobs:
           sudo apt-get install -y latexdiff
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - name: Checkout
+      - name: Checkout version which triggered workflow
         uses: actions/checkout@v2
         with:
+          path: trigger
           fetch-depth: 0
           
-      # check latexdiff version
+      - name: Checkout submitted version
+        uses: actions/checkout@v2
+        with:
+          path: submitted
+          fetch-depth: 0
+          ref: 87f1ef8bad11cb9b8fbecc71095ca1914b0a0435
+          
+      # run latexdiff
       - name: Check latexdiff version
-        run: latexdiff --version
+        run: latexdiff --flatten submitted/article.tex trigger/article.tex > diff2submitted.tex
+        
+      # build PDF with differences
+      - name: Build PDF with differences
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: diff2submitted.tex
+          args: "-output-directory=build -pdf"
+          latexmk_shell_escape: true
