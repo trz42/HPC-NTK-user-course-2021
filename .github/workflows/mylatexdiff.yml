@@ -27,7 +27,7 @@ jobs:
           path: trigger
           fetch-depth: 0
 
-      - name: "Checkout" submitted version
+      - name: Checkout submitted version
         run: |
           ls
           mkdir submitted
